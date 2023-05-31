@@ -1,0 +1,116 @@
+﻿@model IEnumerable<CoppelWeb.Models.Denuncium>
+<style>
+    body {
+        background-image: url("https://img.freepik.com/premium-vector/hexagonal-technology-background_23-2148456898.jpg");
+        background-size: cover;
+    }
+
+    h1 {
+        text-align: center;
+        background-color: rgba(255, 0, 0, .6);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: 0;
+        margin-bottom: 10px;
+        padding: 10px 0;
+        width: 100%;
+    }
+
+    p {
+        color: white;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #tabla {
+        border-collapse: collapse;
+        display: block;
+        margin: auto;
+        padding: 10px;
+        width: 60%;
+        background-color: rgba(00, 00, 00, 0.60);
+    }
+
+    tr {
+        border: 1px solid white;
+    }
+
+    th {
+        background-color: darkblue;
+    }
+
+    th, td {
+        padding: 3px;
+        border: 1px solid white;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: white;
+    }
+
+        td > a {
+            border-radius: 10%;
+            display: block;
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+            margin: 5px;
+            background-color: darkgreen;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    button {
+        width: calc(100% - 100px);
+        margin: 10px 50px;
+        background-color: darkred;
+        color: white;
+        border: 1px solid black;
+        font-size: 30px;
+    }
+
+        button:hover {
+            background-color: lightcoral;
+            cursor: pointer;
+        }
+
+    #menu > input[name="Folio"] {
+        display: none;
+    }
+</style>
+<body>
+    <h1>Listado de Denuncias Finalizadas</h1>
+
+    @if (@Model.Count() == 0)
+    {
+        <label>¡Estas al día! Actualmente no tienes denuncias pendientes por atender</label>
+    }
+    else
+    {
+        <table id="tabla">
+            <thead>
+                <tr>
+                    <th>Folio</th>
+                    <th>Numero Centro</th>
+                    <th>Detalle</th>
+                    <th>Ver</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var denuncia in Model)
+                {
+
+                    <tr>
+                        <td>@denuncia.Folio.ToString("00000")</td>
+                        <td>@denuncia.NumeroCentro</td>
+                        <td>@denuncia.Detalle</td>
+                        <td> <a href="~/administracion/home/vista/@denuncia.Folio">Ver</a></td>
+                    </tr>
+
+
+                }
+            </tbody>
+        </table>
+
+    }
+    <a href="~/Administracion/Home/Index"><button>Volver</button></a>
+</body>

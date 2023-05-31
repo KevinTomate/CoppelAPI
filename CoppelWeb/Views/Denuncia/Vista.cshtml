@@ -1,0 +1,142 @@
+﻿@model CoppelWeb.Models.Denuncium;
+
+<style>
+    body {
+        background-image: url("https://img.freepik.com/premium-vector/hexagonal-technology-background_23-2148456898.jpg");
+        background-size: cover;
+    }
+
+    h1 {
+        text-align: center;
+        background-color: rgba(255, 255, 0, .6);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: 0;
+        margin-bottom: 10px;
+        padding: 10px 0;
+        width: 100%;
+    }
+
+    p {
+        color: white;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #menu {
+        display: block;
+        margin: auto;
+        width: 40%;
+        padding: 10px 0;
+        background-color: rgba(00, 00, 00, 0.60);
+    }
+
+        #menu > * {
+            display: block;
+            width: 100%;
+            margin: 0;
+            align-items: center;
+        }
+
+        #menu > label, #menu > span {
+            color: white;
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        #menu > input {
+            width: calc(100% - 30px);
+            margin: 10px;
+            font-size: 20px;
+        }
+
+            #menu > input[type=submit] {
+                width: calc(100% - 20px);
+                background-color: darkblue;
+                padding: 5px;
+                color: white;
+                border: 1px solid black;
+                font-size: 30px;
+            }
+
+    button {
+        width: calc(100% - 100px);
+        margin: 10px 50px;
+        background-color: darkred;
+        color: white;
+        border: 1px solid black;
+        font-size: 30px;
+    }
+
+        button:hover {
+            background-color: lightcoral;
+            cursor: pointer;
+        }
+</style>
+<h1>Detalle de Denuncia</h1>
+<body>
+    <div id="menu">
+        <label>Empresa/Organización: <span>@Model.IdEmpresaNavigation.Nombre</span> </label><br />
+        <label>Pais: <span>@Model.IdPaisNavigation.Nombre</span>  </label><br />
+        <label>Estado: <span>@Model.IdEstadoNavigation.Nombre</span></label><br />
+        <label>Estatus: <span id="spnStatus" class="@Model.IdEstatus">@Model.IdEstatusNavigation.Descripcion</span></label><br />
+        <br />
+        <hr />
+        <br />
+        <label>Número del centro: <span>@Model.NumeroCentro</span></label> <br />
+        <br />
+        <hr />
+        <br />
+        @if (Model.Anonima == 0)
+        {
+            <label>Denuncia realizado por <span>@Model.NombreCompleto</span> </label>
+
+            <br />
+            <label>con el siguiente número de contacto <span>@Model.Telefono</span> </label>
+
+            <br />
+            <label>y tambien con el siguiente correo electrónico <span>@Model.CorreoElectronico</span> </label>
+
+            <br />
+        }
+        else
+        {
+            <label>Esta denuncia se realizó de forma anónima</label>
+
+            <br />
+        }
+        <br />
+        <hr />
+        <br />
+        <label>Detalle de la denuncia: <span>@Model.Detalle</span></label> <br />
+        <label>Fecha de la incidencia: <span>@Model.Fecha</span></label><br />
+        <br />
+        <hr />
+        <br />
+        @if (string.IsNullOrWhiteSpace(Model.Comentario))
+        {
+            <span>Una vez que un administrador atienda tu denuncia, verás su comentario aquí</span>
+        }
+        else
+        {
+            <span>@Model.Comentario</span>
+        }
+        <br />
+        <hr />
+        <br />
+        <p>Haz click en el siguiente botón para volver</p>
+        <a href="~/Denuncia/Seguimiento">
+            <button>Volver</button>
+        </a>
+    </div>
+    <script>
+        const spanStatus = document.querySelector('#spnStatus');
+        if(spanStatus.classList.contains('1')){
+            spanStatus.style.color = 'orange';
+        } else if (spanStatus.classList.contains('2')){
+            spanStatus.style.color = 'green';
+        } else if(spanStatus.classList.contains('3')){
+            spanStatus.style.color = 'red';
+        }
+</script>
+</body>

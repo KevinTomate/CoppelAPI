@@ -1,0 +1,191 @@
+﻿@model CoppelWeb.ViewModels.DenunciaViewModel;
+<body>
+    <style>
+        body {
+            background-image: url("https://img.freepik.com/premium-vector/hexagonal-technology-background_23-2148456898.jpg");
+            background-size: cover;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: rgba(255, 255, 0, .6);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 0;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        p {
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        form {
+            display: block;
+            margin: auto;
+            width: 60%;
+            padding: 10px 0;
+            background-color: rgba(00, 00, 00, 0.60);
+        }
+
+            form > label {
+                display: inline-block;
+                text-align: right;
+                width: 40%;
+                margin: 3px 15px;
+                color: white;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+
+        #info > label {
+            display: inline-block;
+            text-align: right;
+            width: 40%;
+            margin: 3px 15px;
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        #info > input {
+            display: inline-block;
+            width: 40%;
+            margin: 3px 15px;
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        form > select, form > input {
+            display: inline-block;
+            width: 40%;
+            margin: 3px 15px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        form > button[type=submit] {
+            width: calc(100% - 100px);
+            margin: 10px 50px;
+            background-color: darkblue;
+            color: white;
+            border: 1px solid black;
+            font-size: 30px;
+        }
+
+            form > button[type=submit]:hover {
+                width: calc(100% - 100px);
+                margin: 10px 50px;
+                background-color: lightblue;
+                color: white;
+                border: 1px solid black;
+                font-size: 30px;
+                cursor: pointer;
+            }
+
+        button {
+            width: calc(100% - 100px);
+            margin: 10px 50px;
+            background-color: darkred;
+            color: white;
+            border: 1px solid black;
+            font-size: 30px;
+        }
+
+            button:hover {
+                background-color: lightcoral;
+                cursor: pointer;
+            }
+
+    </style>
+    <h1>Nueva Denuncia</h1>
+    <form method="post" action="~/Denuncia/Agregar">
+        <label>Empresa/Organización: </label>
+        <select name="IdEmpresa">
+            @foreach (var empresa in Model.Empresas)
+            {
+                <option value="@empresa.Id">@empresa.Nombre</option>
+            }
+        </select>
+        <label>Pais: </label>
+        <select id="pais" name="IdPais">
+            @foreach (var pais in Model.Paises)
+            {
+                <option value="@pais.Id">@pais.Nombre</option>
+            }
+        </select>
+        <label>Estado: </label>
+        <select id="estado" name="idEstado">
+            @foreach (var estado in Model.Estados)
+            {
+                <option class="@estado.IdPais" value="@estado.Id">@estado.Nombre</option>
+            }
+        </select>
+        <br />
+        <label>Número del centro:</label>
+        <input type="number" name="NumeroCentro" />
+        <br />
+        <label for="an">Preferiria ser anonimo</label>
+        <input type="checkbox" id="an" name="Anonima" value="true" />
+        <br />
+        <div id="info">
+            <label>Nombre Completo:</label>
+            <input type="text" name="NombreCompleto" />
+            <br />
+            <label>Correo Electrónico:</label>
+            <input type="text" name="CorreoElectronico" />
+            <br />
+            <label>Teléfono:</label>
+            <input type="text" name="Telefono" />
+        </div>
+        <label>Describa por favor el detalle de su denuncia:</label>
+        <input type="text" name="Detalle" />
+        <br />
+        <label>Fecha de la incidencia:</label>
+        <input type="date" name="Fecha" />
+        <br />
+        <label>Clave para acceder a la denuncia:</label>
+        <input type="password" name="Clave" />
+        <button type="submit" value="Agregar">Agregar</button>
+
+        <p>@Html.ValidationSummary()</p>
+    </form>
+    <a href="~/denuncia/index">
+        <button>Volver a página principal</button>
+    </a>
+    <script>
+        const datos = document.getElementById('info');
+        const pais = document.getElementById('pais');
+        const estado = document.getElementById('estado');
+        const soyAnonimo = document.querySelector('input[type=checkbox]');
+
+        soyAnonimo.addEventListener('change', function(){
+            if(soyAnonimo.checked){
+                datos.style.display = 'none'
+            }else{
+                datos.style.display = 'block'
+            }
+        });
+
+        pais.addEventListener('change', function(){
+            actualizarEstados();
+        })
+
+        function actualizarEstados(){
+            let seleccionado = false;
+            for (const op of estado.children) {
+                if (op.classList.contains(pais.value)) {
+                    op.style.display = ''
+                    if(!seleccionado){
+                        estado.selectedIndex = op.index;
+                        seleccionado = true;
+                    }
+                } else {
+                    op.style.display = 'none'
+                }
+            }
+        }
+
+        actualizarEstados();
+    </script>
+
+</body>

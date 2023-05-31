@@ -1,0 +1,60 @@
+﻿<style>
+    body {
+        background-image: url("https://img.freepik.com/premium-vector/hexagonal-technology-background_23-2148456898.jpg");
+        background-size: cover;
+    }
+
+    h1 {
+        text-align: center;
+        background-color: rgba(255, 255, 0, .6);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: 0;
+        padding: 10px 0;
+        width: 100%;
+    }
+
+    p {
+        color: white;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #menu {
+        display: block;
+        margin: auto;
+        width: 60%;
+        padding: 10px 0;
+        background-color: rgba(00, 00, 00, 0.60);
+    }
+
+        #menu > a {
+            display: block;
+            width: 100%;
+            margin: 10px 50px;
+            align-items: center;
+        }
+
+            #menu > a > button {
+                width: calc(100% - 100px);
+                background-color: darkblue;
+                color: white;
+                border: 1px solid black;
+                font-size: 30px;
+            }
+
+                #menu > a > button:hover {
+                    background-color: lightblue;
+                    cursor: pointer;
+                }
+</style>
+<h1>Coppel</h1>
+<p>¡Bienvenido al sitio web de Coppel! Para contiuar por favor seleccione una de las siguientes opciones</p>
+<div id="menu">
+    <a href="~/denuncia">
+        <button>Sistema de denuncias</button>
+    </a>
+    <a href="~/Home/login">
+        <button>Acceder al registro</button>
+    </a>
+</div>

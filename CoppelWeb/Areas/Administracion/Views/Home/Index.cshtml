@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    body {
+        background-image: url("https://img.freepik.com/premium-vector/hexagonal-technology-background_23-2148456898.jpg");
+        background-size: cover;
+    }
+
+    h1 {
+        text-align: center;
+        background-color: rgba(255, 0, 0, .6);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: 0;
+        margin-bottom: 10px;
+        padding: 10px 0;
+        width: 100%;
+    }
+
+    p {
+        color: white;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #menu {
+        display: block;
+        margin: auto;
+        width: 60%;
+        padding: 10px 0;
+        background-color: rgba(00, 00, 00, 0.60);
+    }
+
+        #menu > a {
+            display: block;
+            width: 100%;
+            margin: 10px 50px;
+            align-items: center;
+        }
+
+            #menu > a > button {
+                width: calc(100% - 100px);
+                background-color: darkblue;
+                padding: 5px;
+                color: white;
+                border: 1px solid black;
+                font-size: 30px;
+            }
+
+            #menu > a:last-of-type > button {
+                background-color: darkred;
+            }
+
+            #menu > a > button:hover {
+                background-color: lightblue;
+                cursor: pointer;
+            }
+
+            #menu > a:last-of-type > button:hover {
+                background-color: lightcoral;
+            }
+</style>
+<h1>Administración</h1>
+<p>Por favor seleccione la opcion que desee hacer</p>
+<div id="menu">
+    <a href="~/administracion/home/pendientes"><button>Denuncias Pendientes</button></a>
+    <a href="~/administracion/home/finalizadas"><button>Denuncias Finalizadas</button></a>
+    <a href="~/administracion/home/canceladas"><button>Denuncias Canceladas</button></a>
+    <a href="~/logout"><button>Cerrar Sesión</button></a>
+
+</div>

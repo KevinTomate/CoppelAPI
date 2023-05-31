@@ -1,0 +1,144 @@
+﻿@model CoppelWeb.Areas.Administracion.ViewModels.VistaViewModel
+<style>
+    body {
+        background-image: url("https://img.freepik.com/premium-vector/hexagonal-technology-background_23-2148456898.jpg");
+        background-size: cover;
+    }
+
+    h1 {
+        text-align: center;
+        background-color: rgba(255, 0, 0, .6);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: 0;
+        margin-bottom: 10px;
+        padding: 10px 0;
+        width: 100%;
+    }
+
+    p {
+        color: white;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #menu {
+        display: block;
+        margin: auto;
+        width: 40%;
+        padding: 10px 0;
+        background-color: rgba(00, 00, 00, 0.60);
+    }
+
+        #menu > * {
+            display: block;
+            width: 100%;
+            margin: 0;
+            align-items: center;
+        }
+
+        #menu > label, #menu > span {
+            color: white;
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        #menu > input {
+            width: calc(100% - 30px);
+            margin: 10px;
+            font-size: 20px;
+        }
+
+            #menu > input[type=submit] {
+                width: calc(100% - 20px);
+                background-color: darkblue;
+                padding: 5px;
+                color: white;
+                border: 1px solid black;
+                font-size: 30px;
+            }
+
+    button {
+        width: calc(100% - 100px);
+        margin: 10px 50px;
+        background-color: darkred;
+        color: white;
+        border: 1px solid black;
+        font-size: 30px;
+    }
+
+        button:hover {
+            background-color: lightcoral;
+            cursor: pointer;
+        }
+
+    #menu > input[name="Folio"] {
+        display: none;
+    }
+</style>
+<h1>Nueva Denuncia</h1>
+<div>
+    <form method="post" action="~/administracion/home/vista" id="menu">
+        <input hidden name="Folio" value="@Model.Denuncia.Folio" />
+        <label>Empresa/Organización: <span>@Model.Denuncia.IdEmpresaNavigation.Nombre</span> </label><br />
+        <label>Pais: <span>@Model.Denuncia.IdPaisNavigation.Nombre</span>  </label><br />
+        <label>Estado: <span>@Model.Denuncia.IdEstadoNavigation.Nombre</span></label><br />
+        <label>Estatus: </label>
+        <select id="estatus" name="IdEstatus">
+            @foreach (var estado in Model.Estados)
+            {
+                if (estado.Id == Model.Denuncia.IdEstatus)
+                {
+                    <option selected value="@estado.Id">@estado.Descripcion</option>
+                }
+                else
+                {
+                    <option value="@estado.Id">@estado.Descripcion</option>
+                }
+            }
+        </select><br />
+        <br />
+        <hr />
+        <br />
+        <label>Número del centro: <span>@Model.Denuncia.NumeroCentro</span></label> <br />
+        <br />
+        <hr />
+        <br />
+        @if (Model.Denuncia.Anonima == 0)
+        {
+            <label>Denuncia realizado por <span>@Model.Denuncia.NombreCompleto</span> </label>
+
+            <br />
+            <label>con el siguiente número de contacto <span>@Model.Denuncia.Telefono</span> </label>
+
+            <br />
+            <label>y tambien con el siguiente correo electrónico <span>@Model.Denuncia.CorreoElectronico</span> </label>
+
+            <br />
+        }
+        else
+        {
+            <label>Esta denuncia se realizó de forma anónima</label>
+
+            <br />
+        }
+        <br />
+        <hr />
+        <br />
+        <label>Detalle de la denuncia: <span>@Model.Denuncia.Detalle</span></label> <br />
+        <label>Fecha de la incidencia: <span>@Model.Denuncia.Fecha</span></label><br />
+        <br />
+        <hr />
+        <br />
+        <label>Proporcione un comentario para el denunciante</label>
+        <input type="text" value="@Model.Denuncia.Comentario" name="Comentario" />
+        <br />
+        <hr />
+        <br />
+        <p>Concluir esta denuncia</p>
+        <input type="submit" />
+        <a href="~/Denuncia/Seguimiento">
+            <button>Volver</button>
+        </a>
+    </form>
+</div>

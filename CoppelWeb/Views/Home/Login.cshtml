@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Calificaciones</title>
+    <style>
+        body {
+            background-image: url("https://img.freepik.com/premium-vector/hexagonal-technology-background_23-2148456898.jpg");
+            background-size: cover;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: rgba(255, 255, 0, .6);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 0;
+            margin-bottom: 10px;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        p {
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #menu {
+            display: block;
+            margin: auto;
+            width: 40%;
+            padding: 10px 0;
+            background-color: rgba(00, 00, 00, 0.60);
+        }
+
+            #menu > * {
+                display: block;
+                width: 100%;
+                margin: 0;
+                align-items: center;
+            }
+
+            #menu > label {
+                color: white;
+                text-align: center;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+
+            #menu > input {
+                width: calc(100% - 30px);
+                margin: 10px;
+                font-size: 20px;
+            }
+
+                #menu > input[type=submit] {
+                    width: calc(100% - 20px);
+                    background-color: darkblue;
+                    padding: 5px;
+                    color: white;
+                    border: 1px solid black;
+                    font-size: 30px;
+                }
+
+                #menu > input[type=submit]:hover {
+                    background-color: lightblue;
+                        cursor: pointer;
+                }
+
+        button {
+            width: calc(100% - 100px);
+            margin: 10px 50px;
+            background-color: darkred;
+            color: white;
+            border: 1px solid black;
+            font-size: 30px;
+        }
+
+            button:hover {
+                background-color: lightcoral;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+    <h1>Iniciar Sesión</h1>
+    <div>
+        <form method="post" action="~/Home/Login" id="menu">
+            <label>Nombre de usuario:</label><br>
+            <input name="nombre" required type="text" /><br>
+            <label>Contraseña:</label><br>
+            <input name="password" required type="password" /><br>
+            <input type="submit" value="Iniciar Sesión" />
+            <p>@Html.ValidationSummary()</p>
+        </form>
+        <a href="~/home/index">
+        <button>Volver a página principal</button>
+    </a>
+    </div>
+</body>
+</html>
+
+

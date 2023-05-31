@@ -1,0 +1,90 @@
+﻿<style>
+    body {
+        background-image: url("https://img.freepik.com/premium-vector/hexagonal-technology-background_23-2148456898.jpg");
+        background-size: cover;
+    }
+
+    h1 {
+        text-align: center;
+        background-color: rgba(255, 255, 0, .6);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: 0;
+        margin-bottom: 10px;
+        padding: 10px 0;
+        width: 100%;
+    }
+
+    p {
+        color: white;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #menu {
+        display: block;
+        margin: auto;
+        width: 40%;
+        padding: 10px 0;
+        background-color: rgba(00, 00, 00, 0.60);
+    }
+
+        #menu > * {
+            display: block;
+            width: 100%;
+            margin: 0;
+            align-items: center;
+        }
+
+        #menu > label {
+            color: white;
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        #menu > input {
+            width: calc(100% - 30px);
+            margin: 10px;
+            font-size: 20px;
+        }
+
+            #menu > input[type=submit] {
+                width: calc(100% - 20px);
+                background-color: darkblue;
+                padding: 5px;
+                color: white;
+                border: 1px solid black;
+                font-size: 30px;
+            }
+
+    button {
+        width: calc(100% - 100px);
+        margin: 10px 50px;
+        background-color: darkred;
+        color: white;
+        border: 1px solid black;
+        font-size: 30px;
+    }
+
+        button:hover {
+            background-color: lightcoral;
+            cursor: pointer;
+        }
+</style>
+<body>
+    <h1>Seguimiento</h1>
+    <p>Por favor proporcione el número de folio y la contraseña que ha proporcionado</p>
+    <form method="post" action="~/Denuncia/Seguimiento" id="menu">
+        <label>Número de folio:</label>
+        <input type="number" name="Folio" />
+        <br />
+        <label>Contraseña:</label>
+        <input type="password" name="Clave" />
+        <br />
+        <input type="submit" name="Seguimiento" value="Consultar" />
+        <p>@Html.ValidationSummary()</p>
+    </form>
+    <a href="~/denuncia/index">
+        <button>Cancelar</button>
+    </a>
+</body>
